@@ -7,6 +7,7 @@ Planning and Control: A Semidefinite Programming Approach](https://arxiv.org/pdf
 
 ## 1. Requirements
 - All our experiments are performed in **[MATLAB](https://kr.mathworks.com/products/matlab.html)**
+- The DR-risk map is constructed by solving the SDP problem using **[MOSEK](https://www.mosek.com)**
 - The MPC is solved using **[FORCESPRO 6.0.0](https://forces.embotech.com/)**
 
 To install FORCESPRO, you first need to get license. If you are currently working as a researcher you can request academic license. For detailed installation guide refer to [official manual](https://forces.embotech.com/Documentation/index.html).
