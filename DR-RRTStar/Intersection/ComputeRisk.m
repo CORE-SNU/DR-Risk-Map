@@ -1,18 +1,16 @@
 function risk=ComputeRisk(node,k)
-global xy21 xy21_var controller r2 t;
-% % % % % for i=1:size(statobs,1)
-% % % % %     risk(i)=-(node.coord(1:2)'-statobs(i,1:2))*(node.coord(1:2)'-statobs(i,1:2))';
-% % % % % end
-% % % % % risk=risk';
-if ~isempty(xy21)
-for i=1:length(xy21{t})
-    [risk(i),diagnos]=controller({round(node.coord(1:2),6),xy21_var{t}{i}(:,:,k+1),xy21{t}{i}(k+1,:)', r2(i)});
+global pos_mu pos_var controller r2 t;
+
+if ~isempty(pos_mu)
+for i=1:size(pos_mu{t},3)
+    [risk(i),diagnos] = controller({round(node.coord(1:2),6),pos_var{t}(:,:,k+1,i),pos_mu{t}(:,k+1,i)});
     if diagnos~=0 && diagnos~=4
         error(yalmiperror(diagnos));
     end
 end
-risk=subplus(max(r2+risk));
+risk=subplus(max(risk+r2));
 else
     risk=0;
 end
+
 end
